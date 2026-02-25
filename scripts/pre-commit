@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+cd "$(git rev-parse --show-toplevel)"
+
+echo "==> Lint (strict)..."
+make lint-strict
+
+echo "==> Go vet..."
+go vet ./...
+
+echo "==> Tests..."
+make test
+
+echo "==> Pre-commit passed."

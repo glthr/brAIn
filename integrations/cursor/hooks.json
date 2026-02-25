@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "{{HOME}}/.cursor/hooks/save-prompt.sh"
+      }
+    ],
+    "stop": [
+      {
+        "command": "{{HOME}}/.cursor/hooks/brain-encode.sh"
+      }
+    ]
+  }
+}

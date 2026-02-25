@@ -1,0 +1,79 @@
+version: "2"
+run:
+  go: "1.24"
+  modules-download-mode: readonly
+linters:
+  enable:
+    - bodyclose
+    - contextcheck
+    - copyloopvar
+    - errorlint
+    - exhaustive
+    - nilerr
+    - noctx
+    - prealloc
+    - revive
+    - unconvert
+  disable:
+    - errcheck
+    - nilnil
+    - unparam
+    - wastedassign
+  settings:
+    exhaustive:
+      default-signifies-exhaustive: false
+    govet:
+      enable:
+        - shadow
+        - unusedresult
+    revive:
+      rules:
+        - name: blank-imports
+          severity: warning
+        - name: context-as-argument
+          severity: warning
+        - name: indent-error-flow
+          severity: warning
+        - name: error-return
+          severity: warning
+        - name: error-strings
+          severity: warning
+        - name: receiver-naming
+          severity: warning
+        - name: if-return
+          severity: warning
+        - name: var-naming
+          severity: warning
+        - name: package-comments
+          severity: warning
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - errorlint
+        path: _test\.go
+      - linters:
+          - revive
+        path: cmd/daemon/runner\.go
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
