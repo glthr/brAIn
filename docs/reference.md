@@ -24,7 +24,7 @@ make test
 go run ./cmd/example/
 ```
 
-This creates an `agent_brain.brain` file and demonstrates every subsystem: storing and querying all five memory types, recording A2A and A2H interactions, running a consolidation cycle, and inspecting brain metadata. The file is a regular SQLite database and can be opened with any SQLite tool.
+This creates an `agent_brain.brain` file in the current directory and demonstrates every subsystem: storing and querying all five memory types, recording A2A and A2H interactions, running a consolidation cycle, and inspecting brain metadata. The file is a regular SQLite database and can be opened with any SQLite tool.
 
 **Procedural memory** is populated by explicit `brain procedure` commands or by consolidation/encoding (emerging skills). A fresh brain has 0 procedures until one of these runs; the example adds two procedures explicitly so all five memory types are visible.
 

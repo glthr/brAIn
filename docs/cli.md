@@ -1,6 +1,6 @@
 # CLI Tool
 
-The `brain` CLI provides direct access to every memory subsystem. The brain file is always `~/.brain/agent.brain` -- no path argument needed.
+The `brain` CLI provides direct access to every memory subsystem. The brain file is always `~/.brain/agent.brain` — no path argument needed.
 
 ## Commands
 
@@ -13,7 +13,16 @@ The `brain` CLI provides direct access to every memory subsystem. The brain file
 | `episode` | Record an episodic memory |
 | `episodes` | List recent episodes (optionally filter by tag) |
 | `working` | Store a working memory item |
-| `attention` | Show active attentional focus (working memory) |
+| `attention` | Show active attentional focus (goals first, then working memory) |
+| **`context`** | **One-shot start-of-turn context:** whoami, attention, recall by topics, episodes, traits. This is the main command agents run at the start of each turn. Optional: `--topics "topic1,topic2"` to recall by topic. |
+| `context-budget` | Return ranked, deduplicated memories for a topic within a token budget (`--topic`, `--tokens`) |
+| `goal` | Create a persistent goal (survives until resolved) |
+| `resolve-goal` | Mark a goal as completed and remove it |
+| `timeline` | Show archived episodic memories (narrative history before semanticization) |
+| `forget` | Hard-delete a specific memory by ID |
+| `pin` / `unpin` | Pin a memory (salience=1.0, exempt from decay) or remove pin |
+| `correct` | Update memory content in-place (preserves history) |
+| `explain` | Trace a memory's lifecycle (source, salience, pinned status) |
 | `procedure` | Store a new procedure |
 | `procedures` | List learned procedures |
 | `skills` | List emerging skills (procedures learned from conversation or consolidation) |
@@ -33,6 +42,7 @@ The `brain` CLI provides direct access to every memory subsystem. The brain file
 | `install-service` | Install daemon as a system service (launchd on macOS, systemd on Linux) |
 | `uninstall-service` | Remove the daemon system service |
 | `daemon-status` | Show whether the daemon is running and the last 15 lines of `~/.brain/daemon.log` |
+| `daemon-restart` | Restart the daemon service (no rebuild) |
 | `daemon-update` | Ask the daemon to rebuild from source and restart (sends SIGUSR2; requires `source_path` in config) |
 | `activity` | Show recent brain activity (daemon health check) |
 | `config` | Show current config values and file location |
@@ -43,13 +53,7 @@ The `brain` CLI provides direct access to every memory subsystem. The brain file
 
 **Procedures vs skills:** `brain procedures` lists all procedures (explicit + emerging). `brain skills` lists emerging skills (procedures learned from conversation or consolidation). `brain skill <query>` searches procedures by goal or intent and returns matching steps so the agent can apply one.
 
-**Deprecated aliases** (still work):
-
-| Old | New |
-|-----|-----|
-| `ingest` | `encode` |
-| `context` | `attention` |
-| `process-ingests` | `process-encodings` |
+**Deprecated aliases** (still work): `ingest` → `encode`, `process-ingests` → `process-encodings`.
 
 ## Examples
 
@@ -121,6 +125,13 @@ brain-daemon
 brain install-service
 brain uninstall-service
 brain daemon-status
+
+# Start-of-turn context (what agents run each turn)
+brain context
+brain context --topics "go,testing"
+
+# Token-bounded context for a topic
+brain context-budget --topic "authentication" --tokens 2000
 
 # View config
 brain config

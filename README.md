@@ -6,6 +6,12 @@
 
 LLM-based agents are stateless by default: every conversation starts from zero. **brAIn** fixes this by giving agents a structured, persistent memory modeled after the human brain: working, episodic, semantic, procedural, and contact memory, all in a single portable `.brain` file.
 
+<p align="center">
+  <img src="episodic-memory.png" alt="Episodic memory diagram" >
+  <br>
+  <small>Episodic memory accumulated during the development of <a href="https://github.com/glthr/go-debug-skill">go-debug-skill</a>.</small>
+</p>
+
 **Key features:**
 - **5-type neuroscience-inspired memory** — working, episodic, semantic, procedural, contact
 - **Built-in consolidation** (the "sleep cycle") — memories decay, promote, and emerge automatically
@@ -29,7 +35,7 @@ https://github.com/user-attachments/assets/d146d473-833d-4032-81d8-97535dac8c81
 ## Quick start
 
 1. **Install:** run `make install`.
-2. **Use:** use any supported agent (Cursor, Claude Code, Codex, Gemini CLI, etc.); the agent uses brAIn when configured (see [AI Editor Integration](docs/editors.md)).
+2. **Use:** use any supported agent (Cursor, Claude Code, Codex, Gemini CLI, etc.); the agent uses brAIn when configured (see [AI Editor Integration](docs/editors.md)). The agent runs `brain context` at the start of each turn and `brain encode` after responding so memories stay in sync.
 3. **Introduce yourself:** when the agent asks who you are, say your name (e.g. "Hi! I'm Guillaume") so it can remember you across sessions.
 
 ## Data directory (`~/.brain`)
@@ -61,7 +67,7 @@ See [Configuration](docs/configuration.md) and [Daemon](docs/daemon.md) for deta
 | **Backup or move the brain** | [Backup and restore](docs/backup-restore.md) |
 | **Fix problems or FAQ** | [Troubleshooting](docs/troubleshooting.md) |
 | **Browse all docs** | [Documentation index](docs/README.md) |
-| **Reference** | [Configuration](docs/configuration.md), [CLI](docs/cli.md), [SQLite](docs/sqlite.md), [Reference](docs/reference.md) |
+| **Reference & develop** | [Configuration](docs/configuration.md), [CLI](docs/cli.md), [SQLite](docs/sqlite.md), [Reference](docs/reference.md) (tests, example, project layout) |
 
 ## Running tests and example
 
@@ -70,4 +76,4 @@ make test
 go run ./cmd/example/
 ```
 
-See [Reference](docs/reference.md) for more.
+See [Reference](docs/reference.md) for project layout, CLI vs daemon, and development (pre-commit hook, running the example).

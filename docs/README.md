@@ -1,6 +1,6 @@
 # Documentation index
 
-All docs in one place. The main entry is the [README](../README.md) "If you want to…" table; this file is for browsing the docs folder.
+All docs in one place. Start from the [main README](../README.md) "If you want to…" table for guided navigation. Quick links: [Why brAIn](overview.md) · [CLI reference](cli.md) · [Configuration](configuration.md).
 
 ## Concepts
 
