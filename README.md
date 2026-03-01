@@ -4,7 +4,7 @@
   <img src="logo.png" alt="brAIn logo: neuroscience-inspired memory system for AI agents" >
 </p>
 
-LLM-based agents are stateless by default: every conversation starts from zero. **brAIn** fixes this by giving agents a structured, persistent memory modeled after the human brain: working, episodic, semantic, procedural, and contact memory, all in a single portable `.brain` file.
+AI platforms are adding memory, but it stays siloed inside each tool. **brAIn** gives agents a shared, structured memory modeled after the human brain: working, episodic, semantic, procedural, and contact memory, all in a single portable `.brain` file that works across Cursor, Claude Code, Codex, Gemini CLI, and more.
 
 <p align="center">
   <img src="episodic-memory.png" alt="Episodic memory diagram" >
